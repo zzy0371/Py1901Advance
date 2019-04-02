@@ -17,7 +17,7 @@ class Goods():
             return result
         else:
             # 遍历越界引发异常
-            raise StopIteration("越界引发一场")
+            raise StopIteration("越界引发异常")
 
 g = Goods(['anyang','xinxiang','hebi'])
 
