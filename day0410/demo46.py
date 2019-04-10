@@ -23,11 +23,12 @@ def singleprocess(urllist):
 def loadsave(urlstr):
     t1 = time.time()
     resp = requests.get(urlstr)
+
+    picname = urlstr.split('/')[-1]
+    with open("imgs/%s" % (picname,), "wb") as f:
+        f.write(resp.content)
     t2 = time.time()
-    print(t1*1000,t2-t1)
-    # picname = urlstr.split('/')[-1]
-    # with open("imgs/%s" % (picname,), "wb") as f:
-    #     f.write(resp.content)
+    print(t1, t2 - t1)
 
 @timecount
 def multiprocess(urllist):
@@ -53,13 +54,12 @@ def multithread(urllist):
     threadlist = []
     for u in urllist:
         t = Thread(target=loadsave,args=(u,))
-        t.setDaemon(True)
         t.start()
 
         threadlist.append(t)
 
-    # for t in threadlist:
-    #     t.join()
+    for t in threadlist:
+        t.join()
 
 
 
@@ -77,4 +77,5 @@ if __name__ == '__main__':
 
     # singleprocess(urllist)
     # multiprocess(urllist)
+    print(time.time())
     multithread(urllist)
