@@ -32,3 +32,4 @@ g1.name = 'cookle'
 print(id(g1.name), id(g2.name), id(Good.name))
 
 
+
