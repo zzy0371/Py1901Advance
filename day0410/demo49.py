@@ -11,7 +11,8 @@ def recv(sc,buffersize):
         print(info.decode("utf8"),addr)
 
 if __name__ == '__main__':
-    SEND_ADDR = ('127.0.0.1', 60000)
+    port = int(input("请输入发送对象"))
+    SEND_ADDR = ('192.168.12.135', port)
     BUFFERSIZE = 1024
     clientSocket = socket(AF_INET,SOCK_DGRAM)
     clientSocket.sendto("".encode("utf8"),SEND_ADDR)
@@ -21,3 +22,7 @@ if __name__ == '__main__':
     t2.start()
     t1.join()
     t2.join()
+
+"""
+Python Input只能在主进程编写
+"""
